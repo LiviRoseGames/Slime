@@ -24,7 +24,7 @@ func _ready() -> void :
 	randomize()
 
 func _physics_process(delta):
-	print(run_timer.time_left)
+	#print(run_timer.time_left)
 	match state:
 		IDLE:
 			idle_state()
