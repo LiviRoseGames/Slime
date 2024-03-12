@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://dvncmpmqdbhq1"]
+[gd_scene load_steps=105 format=3 uid="uid://dvncmpmqdbhq1"]
 
 [ext_resource type="Texture2D" uid="uid://b60xk5be1ypd0" path="res://Art/bunnypack_assets/bunnypack_spritesheets/bunny_idle_strip4.png" id="1_shxtu"]
 [ext_resource type="Script" path="res://Scripts/bunny_enemy.gd" id="1_wfucq"]
@@ -226,30 +226,6 @@ region = Rect2(160, 0, 40, 40)
 atlas = ExtResource("6_i22og")
 region = Rect2(200, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1bmk"]
-atlas = ExtResource("6_i22og")
-region = Rect2(240, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fls05"]
-atlas = ExtResource("6_i22og")
-region = Rect2(280, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yx62x"]
-atlas = ExtResource("6_i22og")
-region = Rect2(320, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3njjk"]
-atlas = ExtResource("6_i22og")
-region = Rect2(360, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1jowv"]
-atlas = ExtResource("6_i22og")
-region = Rect2(400, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5c0o"]
-atlas = ExtResource("6_i22og")
-region = Rect2(440, 0, 40, 40)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8s6r"]
 atlas = ExtResource("3_lkf00")
 region = Rect2(0, 0, 40, 40)
@@ -421,7 +397,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ao4na")
 }],
-"loop": true,
+"loop": false,
 "name": &"Dash",
 "speed": 8.0
 }, {
@@ -474,7 +450,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dc3op")
 }],
-"loop": true,
+"loop": false,
 "name": &"Die",
 "speed": 8.0
 }, {
@@ -523,7 +499,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jc4dy")
 }],
-"loop": true,
+"loop": false,
 "name": &"Fright",
 "speed": 8.0
 }, {
@@ -546,7 +522,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hnhb4")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt",
 "speed": 8.0
 }, {
@@ -563,7 +539,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y8alg")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
 "speed": 8.0
 }, {
@@ -585,26 +561,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jj220")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l1bmk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fls05")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yx62x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3njjk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1jowv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5c0o")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump",
 "speed": 8.0
 }, {
@@ -615,7 +573,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n1p5s")
 }],
-"loop": true,
+"loop": false,
 "name": &"Land",
 "speed": 8.0
 }, {
@@ -751,8 +709,14 @@ script = ExtResource("1_wfucq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_ovybf")
-animation = &"Hurt"
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_odn26")
+
+[node name="RunTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
