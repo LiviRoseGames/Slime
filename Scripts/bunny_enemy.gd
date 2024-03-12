@@ -41,6 +41,7 @@ func _physics_process(delta):
 		DIE:
 			die_state()
 			
+			
 	move_and_slide()
 
 func idle_state():
@@ -49,14 +50,13 @@ func idle_state():
 
 func run_state(delta):
 	if run_timer.is_stopped():
-		run_timer.start(2)
+		run_timer.start(1)
 	animated_sprite_2d.play("Run")
 	if not is_on_floor():
 		state = FALL
 
-	if is_on_floor():
-		if is_on_wall():
-			turn_around()
+	if is_on_wall():
+		turn_around()
 
 	velocity.x = direction * speed
 	animated_sprite_2d.scale.x = direction
@@ -76,6 +76,9 @@ func fall_state(delta):
 	velocity.y += gravity * delta
 	if is_on_floor():
 		state = LAND
+	
+	if is_on_wall():
+		turn_around()
 
 func land_state():
 	velocity = Vector2.ZERO
@@ -103,5 +106,4 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_run_timer_timeout():
 	state = get_random_state([RUN, JUMP])
-	print(state)
 	
