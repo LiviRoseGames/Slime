@@ -1,114 +1,97 @@
 extends CharacterBody2D
 
+var health = 10
 const SPEED = 100
-const JUMP_VELOCITY = -50.0
-var was_on_floor = true
+const JUMP_VELOCITY = -20.0
+var in_air = false
 var current_state = States.IDLE
-
-var playerhealth = 10
-
-enum States { IDLE, MOVE, JUMP, FALL, LAND, SWALLOW, DEATH }
+@onready var anim_tree = $AnimationTree
+@onready var anim_state = anim_tree.get("parameters/playback")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-#Try to avoid using get_node constantly, we can set these once here
-@onready var animPlayer = $AnimationPlayer
-@onready var sprite = $AnimatedSprite2D
+enum States { IDLE, MOVE, JUMP, SWALLOW, DEATH }
 
+func _ready():
+	anim_tree.active = true
+	
 func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
-	#check for jump input
+
+	anim_tree.set("parameters/Hit/blend_position", direction)
+	anim_tree.set("parameters/Die/blend_position", direction)
+
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		if velocity.y > 0:
+			anim_tree.set("parameters/Fall/blend_position", direction)
+			anim_state.travel("Fall")
+			if is_on_floor():
+				change_state(States.IDLE)
+
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		change_state(States.JUMP)
-	elif not is_on_floor() and velocity.y > 0 and current_state != States.FALL:
-		change_state(States.FALL)
-	#check for swallow input
-	if Input.is_action_just_pressed("ui_down") and is_on_floor():
+		in_air = true
+	elif current_state == States.JUMP and is_on_floor():
+		anim_tree.set("parameters/Idle/blend_position", direction)
+		change_state(States.IDLE)
+	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_left"):
+		change_state(States.MOVE)
+	if Input.is_action_pressed("ui_down") and is_on_floor():
 		change_state(States.SWALLOW)
-
-	#Finite State Machine handling
+		
+	move_and_slide()
+		
 	match current_state:
-		States.IDLE, States.MOVE:
+		States.IDLE:
+			if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
+				change_state(States.MOVE)
+			if Input.is_action_just_pressed("ui_up"):
+				change_state(States.JUMP)
+			if Input.is_action_pressed("ui_down"):
+				change_state(States.SWALLOW)
+		States.MOVE:
 			handle_move(direction)
 		States.JUMP:
-			handle_jump()
-		States.FALL:
-			handle_fall(delta)
-		States.LAND:
-			handle_land()
+			handle_jump(direction)
 		States.SWALLOW:
-			handle_swallow()
+			handle_swallow(direction)
 		States.DEATH:
 			handle_death()
-	
-	# Apply movement and gravity outside of state handling
-	velocity.y += gravity * delta
-	move_and_slide()
-
+			
 func change_state(new_state):
 	current_state = new_state
-	match new_state:
-		States.IDLE:
-			animPlayer.play("Idle")
-		States.JUMP:
-			velocity.y = JUMP_VELOCITY
-			animPlayer.play("Jump")
-		States.FALL:
-			animPlayer.play("Fall")
-		States.LAND:
-			animPlayer.play("Land")
-		States.SWALLOW:
-			animPlayer.play("Swallow")
-		States.DEATH:
-			handle_death()
-		_:
-			pass  # For States.MOVE, animation is handled in handle_move
+
+func handle_jump(direction):
+	anim_tree.set("parameters/Jump/blend_position", direction)
+	velocity.y = JUMP_VELOCITY
+	if(Input.is_action_just_pressed("ui_up")):
+		anim_state.travel("Jump")
+		if is_on_floor() and direction == 0:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_move(direction):
+	anim_tree.set("parameters/Move/blend_position", direction)
+	velocity.x = direction * SPEED
 	if direction != 0:
-		sprite.flip_h = direction == -1
-		velocity.x = direction * SPEED
 		if is_on_floor():
-			animPlayer.play("Move")
-			change_state(States.MOVE)
+			anim_state.travel("Move")
+			if current_state != States.MOVE:
+				change_state(States.MOVE)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if is_on_floor() and current_state != States.IDLE:
-			animPlayer.play("Idle")
-		change_state(States.IDLE)
-		
-func handle_swallow():
-	animPlayer.play("Swallow")
-	
-func handle_jump():
-	velocity.y = JUMP_VELOCITY
-	animPlayer.play("Jump")
-	if velocity.y > 0:
-		change_state(States.FALL)
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			anim_tree.set("parameters/Idle/blend_position", direction)
+			anim_state.travel("Idle")
+			change_state(States.IDLE)
 
-func handle_fall(delta):
-	velocity.y += gravity * delta
-	# Fall logic continuation is handled by state transitions
-func handle_land():
-	animPlayer.play("Land")
-			
+func handle_swallow(direction):
+	anim_tree.set("parameters/Swallow/blend_position", direction)
+	if(Input.is_action_pressed("ui_down")):
+		anim_state.travel("Swallow")
+	if is_on_floor() and direction == 0:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 func handle_death():
-	if playerhealth <= 0:
-		change_state(States.DEATH)
+	pass
 
-func take_damage(amount):
-	playerhealth -= amount
-	if playerhealth <= 0:
-		change_state(States.DEATH)
 
-func _on_animation_player_animation_finished(anim_name):
-	if (anim_name == "Swallow"):
-		change_state(States.IDLE)
-	if (anim_name == "Death"):
-		self.queue_free()
-	if (anim_name == "Jump"):
-		change_state(States.FALL)
-	if (anim_name == "Fall"):
-		change_state(States.LAND)
-	if (anim_name == "Land"):
-		change_state(States.IDLE)
