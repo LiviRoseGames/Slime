@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if is_on_wall() or is_at_ledge():
+	if is_on_wall() or (is_at_ledge() and turns_at_ledge):
 		turn_around()
 	
 	match state:
