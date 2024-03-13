@@ -10,7 +10,10 @@ var playerhealth = 10
 enum States { IDLE, MOVE, JUMP, FALL, LAND, SWALLOW, DEATH }
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var playanim = get_node("AnimationPlayer")
+
+#Try to avoid using get_node constantly, we can set these once here
+@onready var animPlayer = $AnimationPlayer
+@onready var sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -46,16 +49,16 @@ func change_state(new_state):
 	current_state = new_state
 	match new_state:
 		States.IDLE:
-			playanim.play("Idle")
+			animPlayer.play("Idle")
 		States.JUMP:
 			velocity.y = JUMP_VELOCITY
-			playanim.play("Jump")
+			animPlayer.play("Jump")
 		States.FALL:
-			playanim.play("Fall")
+			animPlayer.play("Fall")
 		States.LAND:
-			playanim.play("Land")
+			animPlayer.play("Land")
 		States.SWALLOW:
-			playanim.play("Swallow")
+			animPlayer.play("Swallow")
 		States.DEATH:
 			handle_death()
 		_:
@@ -63,23 +66,23 @@ func change_state(new_state):
 
 func handle_move(direction):
 	if direction != 0:
-		get_node("AnimatedSprite2D").flip_h = direction == -1
+		sprite.flip_h = direction == -1
 		velocity.x = direction * SPEED
 		if is_on_floor():
-			playanim.play("Move")
+			animPlayer.play("Move")
 			change_state(States.MOVE)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if is_on_floor() and current_state != States.IDLE:
-			playanim.play("Idle")
+			animPlayer.play("Idle")
 		change_state(States.IDLE)
 		
 func handle_swallow():
-	playanim.play("Swallow")
+	animPlayer.play("Swallow")
 	
 func handle_jump():
 	velocity.y = JUMP_VELOCITY
-	playanim.play("Jump")
+	animPlayer.play("Jump")
 	if velocity.y > 0:
 		change_state(States.FALL)
 
@@ -87,7 +90,7 @@ func handle_fall(delta):
 	velocity.y += gravity * delta
 	# Fall logic continuation is handled by state transitions
 func handle_land():
-	playanim.play("Land")
+	animPlayer.play("Land")
 			
 func handle_death():
 	if playerhealth <= 0:

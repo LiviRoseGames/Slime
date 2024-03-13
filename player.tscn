@@ -659,7 +659,7 @@ script = ExtResource("1_3w6vd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_6i8n1")
-animation = &"Idle"
+animation = &"Land"
 frame = 1
 offset = Vector2(6, 0)
 
@@ -673,6 +673,5 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
