@@ -1,16 +1,17 @@
-[gd_scene load_steps=166 format=3 uid="uid://ccfj46h0pav2j"]
+[gd_scene load_steps=166 format=3 uid="uid://dwacxb61jgnoy"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_3w6vd"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/idle1left.png" id="2_adujl"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/idle1right.png" id="3_jt6tg"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/jumpleft.png" id="4_mo7hv"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/jumpright.png" id="5_v20sw"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/moveleft.png" id="6_tx7oc"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/moveright.png" id="7_6lbea"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/hitleft.png" id="8_87ars"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/hitright.png" id="9_c5yvh"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/swallowleft.png" id="10_yhpxb"]
-[ext_resource type="Texture2D" path="res://Art/Slimes/directionalslimes/swallowright.png" id="11_3ig5e"]
+[ext_resource type="Texture2D" uid="uid://b80as3a0xt0qs" path="res://Art/Slimes/directionalslimes/idle1left.png" id="2_adujl"]
+[ext_resource type="Texture2D" uid="uid://3aje3aecvckq" path="res://Art/Slimes/directionalslimes/idle1right.png" id="3_jt6tg"]
+[ext_resource type="Texture2D" uid="uid://cihblg6nr2wm4" path="res://Art/Slimes/directionalslimes/jumpleft.png" id="4_mo7hv"]
+[ext_resource type="Texture2D" uid="uid://bwwglxvom2hm6" path="res://Art/Slimes/directionalslimes/jumpright.png" id="5_v20sw"]
+[ext_resource type="Texture2D" uid="uid://djsqayxmwtn4i" path="res://Art/Slimes/directionalslimes/moveleft.png" id="6_tx7oc"]
+[ext_resource type="Texture2D" uid="uid://bmyiobw00x4ly" path="res://Art/Slimes/directionalslimes/moveright.png" id="7_6lbea"]
+[ext_resource type="Texture2D" uid="uid://cwd8y5i2sog4v" path="res://Art/Slimes/directionalslimes/hitleft.png" id="8_87ars"]
+[ext_resource type="Texture2D" uid="uid://cmcb1xj1kp1l5" path="res://Art/Slimes/directionalslimes/hitright.png" id="9_c5yvh"]
+[ext_resource type="Texture2D" uid="uid://bcfpdtvwpewh1" path="res://Art/Slimes/directionalslimes/swallowleft.png" id="10_yhpxb"]
+[ext_resource type="Texture2D" uid="uid://ctlqignp3uksh" path="res://Art/Slimes/directionalslimes/swallowright.png" id="11_3ig5e"]
+
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cx71n"]
 load_path = "res://.godot/imported/dieleft.png-65dda06934a3e3bc998589d528cfbba9.ctex"
