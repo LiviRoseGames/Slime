@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bcfpdtvwpewh1" path="res://Art/Slimes/directionalslimes/swallowleft.png" id="10_yhpxb"]
 [ext_resource type="Texture2D" uid="uid://ctlqignp3uksh" path="res://Art/Slimes/directionalslimes/swallowright.png" id="11_3ig5e"]
 
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cx71n"]
 load_path = "res://.godot/imported/dieleft.png-65dda06934a3e3bc998589d528cfbba9.ctex"
 
@@ -1395,6 +1394,7 @@ transitions = ["Die", "End", SubResource("AnimationNodeStateMachineTransition_wy
 graph_offset = Vector2(-503.945, 2.5205)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_3w6vd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

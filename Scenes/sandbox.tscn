@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvyyj76t4dvag"]
+[gd_scene load_steps=7 format=3 uid="uid://cvyyj76t4dvag"]
 
 [ext_resource type="Texture2D" uid="uid://drtbm31wfvppj" path="res://Art/Forest of Illusion Files/Layers/back.png" id="1_1rtfc"]
 [ext_resource type="PackedScene" uid="uid://dvncmpmqdbhq1" path="res://Scenes/Enemies/bunny_enemy.tscn" id="1_f1wjk"]
 [ext_resource type="Texture2D" uid="uid://cak3qebvdlqy2" path="res://Art/Forest of Illusion Files/Layers/middle.png" id="2_wsnxo"]
 [ext_resource type="PackedScene" uid="uid://b6wk4g84j4k8e" path="res://Scenes/tilemap_forest.tscn" id="3_m4cvd"]
 [ext_resource type="PackedScene" uid="uid://wsutrkrnj2u1" path="res://Scenes/Enemies/dog_enemy.tscn" id="4_fqnpc"]
+[ext_resource type="PackedScene" uid="uid://dwacxb61jgnoy" path="res://Scenes/player.tscn" id="6_64cm3"]
 
 [node name="Sandbox" type="Node2D"]
 
@@ -53,8 +54,9 @@ color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [node name="BunnyEnemy" parent="." instance=ExtResource("1_f1wjk")]
 position = Vector2(165, 118)
-collision_layer = 2
 
 [node name="dog_enemy" parent="." instance=ExtResource("4_fqnpc")]
-position = Vector2(288, 146)
-collision_layer = 2
+position = Vector2(132, 218)
+
+[node name="Player" parent="." instance=ExtResource("6_64cm3")]
+position = Vector2(272, 149)
