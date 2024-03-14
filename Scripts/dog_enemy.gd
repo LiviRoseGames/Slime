@@ -20,8 +20,6 @@ var direction = 1.0
 @onready var run_timer = $RunTimer
 @onready var floor_check = $FloorCheck
 
-func _ready() -> void :
-	randomize()
 
 func _physics_process(delta):
 	
@@ -55,13 +53,18 @@ func walk_state(delta):
 	animated_sprite_2d.scale.x = direction
 
 func attack_state():
-	pass
+	animated_sprite_2d.play("Attack")
+	
 
 func hurt_state():
-	pass
+	animated_sprite_2d.play("Hurt")
 
 func death_state():
-	pass
+	animated_sprite_2d.play("Death")
+
+func get_random_state(possible_states : Array):
+	possible_states.shuffle()
+	return possible_states[1]
 
 func turn_around() -> void:
 	direction *= -1.0
