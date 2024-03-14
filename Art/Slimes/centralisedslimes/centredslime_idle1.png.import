@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctlqignp3uksh"
-path="res://.godot/imported/swallowright.png-6139f698b96f4d120e9c1bb7ae0d79ef.ctex"
+uid="uid://dkdsi2mcxusw7"
+path="res://.godot/imported/centredslime_idle1.png-fea8a5d2164a25084e9174db17ddb7b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Slimes/directionalslimes/swallowright.png"
-dest_files=["res://.godot/imported/swallowright.png-6139f698b96f4d120e9c1bb7ae0d79ef.ctex"]
+source_file="res://Art/Slimes/centralisedslimes/centredslime_idle1.png"
+dest_files=["res://.godot/imported/centredslime_idle1.png-fea8a5d2164a25084e9174db17ddb7b4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djsqayxmwtn4i"
-path="res://.godot/imported/moveleft.png-a0ac5e6bb7f61e5a1daae224d4223f1e.ctex"
+uid="uid://bhdl633mxdpew"
+path="res://.godot/imported/centredslime_hit.png-b314572c77c23210b46d10f3e26a7539.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Slimes/directionalslimes/moveleft.png"
-dest_files=["res://.godot/imported/moveleft.png-a0ac5e6bb7f61e5a1daae224d4223f1e.ctex"]
+source_file="res://Art/Slimes/centralisedslimes/centredslime_hit.png"
+dest_files=["res://.godot/imported/centredslime_hit.png-b314572c77c23210b46d10f3e26a7539.ctex"]
 
 [params]
 

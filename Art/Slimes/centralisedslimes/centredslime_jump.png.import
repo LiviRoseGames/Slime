@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmyiobw00x4ly"
-path="res://.godot/imported/moveright.png-7922df5ff388562c39d0832e1aceee8c.ctex"
+uid="uid://xl28povtvgfs"
+path="res://.godot/imported/centredslime_jump.png-219dd441c0557598cd2d19a895a75a96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Slimes/directionalslimes/moveright.png"
-dest_files=["res://.godot/imported/moveright.png-7922df5ff388562c39d0832e1aceee8c.ctex"]
+source_file="res://Art/Slimes/centralisedslimes/centredslime_jump.png"
+dest_files=["res://.godot/imported/centredslime_jump.png-219dd441c0557598cd2d19a895a75a96.ctex"]
 
 [params]
 
