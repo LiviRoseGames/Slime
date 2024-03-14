@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbcve0khkaq6h"]
+[gd_scene load_steps=5 format=3 uid="uid://pdy5sfwa83ic"]
 
 [ext_resource type="Texture2D" uid="uid://c7kg8gecuktjc" path="res://Art/FreeCuteTileset/Tileset.png" id="1_vi1p2"]
-[ext_resource type="PackedScene" uid="uid://ccfj46h0pav2j" path="res://Scenes/player.tscn" id="2_hmqx2"]
+[ext_resource type="PackedScene" uid="uid://dwacxb61jgnoy" path="res://Scenes/player.tscn" id="2_hmqx2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8e5l"]
 texture = ExtResource("1_vi1p2")
