@@ -6,6 +6,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 enum PlayerMode {
 	SLIME,
+	SWALLOW,
 	RABBIT,
 	DOG,
 	BIRD
@@ -43,6 +44,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
 	
 	if Input.is_action_just_pressed("ui_down"):
+		player_mode = PlayerMode.SWALLOW
 		swallow()
 	else:
 		animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
@@ -50,10 +52,9 @@ func _physics_process(delta):
 
 func swallow():
 	animated_sprite_2d.play("slime_swallow")
+	set_physics_process(false)
 
 func die():
 	is_dead = true
 	animated_sprite_2d.play("death")
-	area_2d.set_collision_mask_value(3, false)
-	set_collision_layer_value(1, false)
-	set_physics_process(false)
+
