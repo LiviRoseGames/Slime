@@ -85,10 +85,10 @@ func land_state():
 	animated_sprite_2d.play("Land")
 
 func hurt_state():
-	pass
+	animated_sprite_2d.play("Hurt")
 
 func die_state():
-	pass
+	animated_sprite_2d.play("Die")
 
 func turn_around() -> void:
 	direction *= -1.0
