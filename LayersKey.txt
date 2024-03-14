@@ -1,0 +1,6 @@
+Layers are where something exists.
+Masks are where the object looks for collisions.
+
+Layer 1: Environment, tileset (everyone looks here)
+Layer 2: Enemy Hitbox (Player Hurtbox looks here)
+Layer 3: Player Hitbox for swallowing (Enemy Hurtbox looks here)
