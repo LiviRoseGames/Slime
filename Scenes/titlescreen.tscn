@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc6mtcw8ydaun"]
+[gd_scene load_steps=6 format=3 uid="uid://bc6mtcw8ydaun"]
 
 [ext_resource type="Script" path="res://Scripts/titlescreen.gd" id="1_q46iy"]
 [ext_resource type="Script" path="res://Scripts/Background.gd" id="2_ni8ha"]
+[ext_resource type="Texture2D" uid="uid://c71mqsmktmo2a" path="res://Art/Title assets/title.png" id="2_qa7k1"]
 [ext_resource type="Texture2D" uid="uid://drtbm31wfvppj" path="res://Art/Forest of Illusion Files/Layers/back.png" id="3_2akrl"]
 [ext_resource type="Texture2D" uid="uid://cak3qebvdlqy2" path="res://Art/Forest of Illusion Files/Layers/middle.png" id="4_a32bl"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_q46iy")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(243, 113)
+texture = ExtResource("2_qa7k1")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 script = ExtResource("2_ni8ha")
@@ -40,17 +45,17 @@ texture = ExtResource("4_a32bl")
 
 [node name="quitButton" type="Button" parent="."]
 offset_left = 187.0
-offset_top = 153.0
+offset_top = 191.0
 offset_right = 295.0
-offset_bottom = 184.0
+offset_bottom = 222.0
 text = "Quit
 "
 
 [node name="startButton" type="Button" parent="."]
 offset_left = 187.0
-offset_top = 92.0
+offset_top = 141.0
 offset_right = 295.0
-offset_bottom = 121.0
+offset_bottom = 172.0
 text = "Start
 "
 
